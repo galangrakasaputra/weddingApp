@@ -31,7 +31,7 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
         if($this->countUser() == 0){
             $data['status'] = 'admin';
         } else {
-            $data['status'] = 'user';
+            $data['status'] = 'customer';
         }
         return $this->model->create($data);
     }

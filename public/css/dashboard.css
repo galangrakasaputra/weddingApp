@@ -1,0 +1,28 @@
+.background {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* bikin layer background yang blur */
+.background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../img/gambar-1.jpg') no-repeat center/cover;
+  filter: blur(8px);
+  z-index: -1; /* biar di belakang container */
+}
+
+.container {
+  position: relative;
+  z-index: 1; /* biar di atas background blur */
+}
+
+#baru {
+  background-color: black;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

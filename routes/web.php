@@ -1,9 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::check()){
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login');
 });
 
 // Login
@@ -17,4 +21,6 @@ Route::post('/register', [App\Http\Controllers\LoginController::class, 'register
 // Logout
 Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index'])->name('dashboard');
+});

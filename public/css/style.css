@@ -15,6 +15,14 @@ body {
     line-height: 1.6;
 }
 
+.glass {
+  background: rgba(255, 255, 255, 0.2); /* transparan */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* untuk Safari */
+  border-radius: 10px;
+  padding: 20px;
+}
+
 .login-container {
     width: 100%;
     max-width: 420px;

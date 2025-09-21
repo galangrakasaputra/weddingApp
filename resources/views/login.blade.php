@@ -16,7 +16,7 @@
             <form class="login-form" action="{{ route('login-user') }}" id="loginForm" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Username / Email</label>
                     <div class="input-wrapper">
                         <input type="text" id="username" name="username" required autocomplete="username">
                         <span class="focus-border"></span>
