@@ -1,17 +1,12 @@
 .background {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-/* bikin layer background yang blur */
-.background::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+  position: fixed;     /* supaya memenuhi layar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: url('../img/gambar-1.jpg') no-repeat center/cover;
   filter: blur(8px);
-  z-index: -1; /* biar di belakang container */
+  z-index: -1;
 }
 
 .container {
@@ -21,8 +16,13 @@
 
 #baru {
   background-color: black;
-  height: 200px;
-  display: flex;
+  height: 100%;
+  border-radius: 15px;
+  margin-top: 5%;
+  padding: 20px;
+  color: white;
   align-items: center;
+  text-align: center;
   justify-content: center;
+  opacity: 0.5;
 }
