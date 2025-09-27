@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 // Login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
-Route::post('/login', [App\Http\Controllers\LoginController::class, 'loginUser'])->name('login-user');
+Route::post('/post-login', [App\Http\Controllers\LoginController::class, 'loginUser'])->name('login-user');
 
 // Registter
 Route::get('/register', [App\Http\Controllers\LoginController::class, 'register'])->name('register');

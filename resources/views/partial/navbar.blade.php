@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand navbar-light bg-dark topbar static-top shadow">
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ml-4">
         {{-- menu dari sidebar dipindah ke sini --}}
         <li class="nav-item">
           <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="/dashboard">Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ml-3">
           <a class="nav-link {{ request()->is('customer') ? 'active' : '' }}" href="/customer">Custome</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ml-3">
           <a class="nav-link {{ request()->is('report') ? 'active' : '' }}" href="/report">Report</a>
         </li>
       </ul>
@@ -47,6 +47,15 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
+                @else
+                <a class="dropdown-item" href="{{ route('login') }}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Login
+                </a>
+                <a class="dropdown-item" href="{{ route('register') }}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Regoister
+                </a>
                 @endif
             </div>
         </li>

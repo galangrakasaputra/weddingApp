@@ -15,14 +15,23 @@
 }
 
 #baru {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   border-radius: 15px;
   margin-top: 5%;
   padding: 20px;
-  color: white;
   align-items: center;
   text-align: center;
   justify-content: center;
-  opacity: 0.5;
+  color: white;
+}
+
+.color_div{
+  background: url('../img/gambar-1.jpg') no-repeat center/cover;
+  color: white;
+}
+
+#loginTitle h5{
+  color:white;
+  margin-top: 4%;
 }

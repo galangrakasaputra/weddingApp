@@ -6,4 +6,7 @@
     <div id="baru">
     </div>
 </div>
+
+<div class="modal fade" style="margin-top: 8%" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+</div>
 @endsection
