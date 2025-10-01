@@ -35,11 +35,13 @@ class LoginController extends Controller
         if($user){
             Auth::login($user);
             return redirect()->route('dashboard');
+        }else {
+            return redirect()->back()->with('error', 'Username Atau Password Salah');
         }
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

@@ -2,6 +2,11 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 <div class="background"></div>
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="container">
     <div id="baru">
         <h1>Selamat Datang @auth {{ Auth::user()->name }} @else di Aplikasi Wedding @endauth</h1>

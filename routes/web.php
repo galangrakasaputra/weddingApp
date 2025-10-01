@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
-});
+})->name('home');
 
 // Login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
