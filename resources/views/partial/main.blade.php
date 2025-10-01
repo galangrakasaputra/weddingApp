@@ -14,6 +14,7 @@
     @vite('resources/js/app.jsx')
 </head>
 <body>
+    <div id="csrf_token" data-csrf="{{ csrf_token() }}" style="display: none"></div>
 
     @include('partial.navbar')
     {{-- @include('partial.sidebar') --}}
