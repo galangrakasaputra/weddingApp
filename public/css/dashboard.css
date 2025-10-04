@@ -14,7 +14,7 @@
   z-index: 1; /* biar di atas background blur */
 }
 
-#baru {
+.content {
   background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   border-radius: 15px;

@@ -1,6 +1,7 @@
 // import React from 'react';
 import ReactDOM from 'react-dom/client';
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
 function App() {
     // const [html, setHtml] = useState(`
     // `);
@@ -52,5 +53,44 @@ function Login() {
     );
 }
 
+// function templateInvitation(){
+    
+// }
+
+function inputGambarPengantin(){
+    const [preview, setPreview] = useState(null);
+
+    const handeFile = async (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+
+        setPreview(URL.createObjectURL(file));
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const response = await axios.post(`${window.location.origin}/api/uploadImage`, formData, {
+                headers: { "Content-Type": "multipart/form-data"}
+            });
+            console.log("berhasil upload");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    return (
+        <input type="file" accept='image/*' onChange={handeFile} className='form-control' style="width: 30%; margin:auto" />
+        // {preview && (
+        //   <img
+        //     src={preview}
+        //     alt="Preview"
+        //     className="w-56 h-56 object-cover mt-4 mx-auto rounded-lg border"
+        //   />
+        // )};
+    );
+}
+
 // ReactDOM.createRoot(document.getElementById('baru')).render(<App />);
 ReactDOM.createRoot(document.getElementById('loginForm')).render(<Login />);
+ReactDOM.createRoot(document.getElementById('inputanGambar')).render(<inputGambarPengantin />);

@@ -8,7 +8,7 @@
     </div>
 @endif
 <div class="container">
-    <div id="baru">
+    <div class="content">
         <h1>Selamat Datang @auth {{ Auth::user()->name }} @else di Aplikasi Wedding @endauth</h1>
         <br>
         <h3>Aplikasi ini Dibuat agar Anda yang ingin mengundang teman, <br> kerabat atau orang lain Ke Pernikahan bisa menggunakan website ini.</h3>
@@ -23,6 +23,9 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Buat Undangan</button>
         @endauth
     </div>
+    {{-- <div id="template">
+
+    </div> --}}
 </div>
 
 <div class="modal fade" style="margin-top: 8%" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
