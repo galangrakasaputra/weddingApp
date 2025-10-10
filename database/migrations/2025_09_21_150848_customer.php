@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('background');
             $table->json('image');
             $table->string('location');
+            $table->string('maps_location');
             $table->string('event_date');
             $table->rememberToken();
             $table->timestamps();

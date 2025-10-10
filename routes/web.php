@@ -22,4 +22,5 @@ Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'inde
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/undangan/{id_user}', [App\Http\Controllers\dashboardController::class, 'invitation'])->name('create-invitation');
+    Route::post('/undangan', [App\Http\Controllers\dashboardController::class, 'weddingInvitation'])->name('create_invitation');
 });
