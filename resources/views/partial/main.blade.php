@@ -11,7 +11,6 @@
     <link href="{{ asset('bootstrap/js/bootstrap.min.js') }}" rel="stylesheet">
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     @viteReactRefresh
-    @vite('resources/js/app.jsx')
 </head>
 <body>
     <div id="csrf_token" data-csrf="{{ csrf_token() }}" style="display: none"></div>
