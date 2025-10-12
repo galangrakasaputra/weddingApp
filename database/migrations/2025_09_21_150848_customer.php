@@ -25,11 +25,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_customer');
             $table->string('summary');
-            $table->string('background');
+            $table->json('background');
             $table->json('image');
             $table->string('location');
             $table->string('maps_location');
-            $table->string('event_date');
+            $table->date('event_date');
             $table->rememberToken();
             $table->timestamps();
 

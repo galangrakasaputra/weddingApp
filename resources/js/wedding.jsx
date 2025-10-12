@@ -2,9 +2,14 @@
 import ReactDOM from 'react-dom/client';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import flatpickr from "flatpickr";
+import { Indonesian } from "flatpickr/dist/l10n/id.js";
+import "flatpickr/dist/flatpickr.min.css";
 
 function Wedding(){
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const [html, setHtml] = useState(`
+        <input type="hidden" name="_token" value="${csrfToken}">
           <div class="form-group">
                 <h5>Pasangan Pria</h5>
             </div>
@@ -65,37 +70,44 @@ function Wedding(){
                 </div>
             </div>
             <div class="form-group">
-                <label for="summary">Lokasi Pernikahan</label>
+                <label for="lokasiNikah">Lokasi Pernikahan</label>
                 <div class="input-wrapper" id="lokasiNikah">
-                    <input class="form-control" style="width:50%; margin:auto;" type="text" name="weddingPlace">
+                    <input class="form-control" style="width:50%; margin:auto;" type="text" name="weddingPlace" required>
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="summary">Link Maps</label>
+                <label for="linkMaps">Link Maps</label>
                 <div class="input-wrapper" id="linkMaps">
-                    <input class="form-control" style="width:50%; margin:auto;" type="text" name="linkMaps">
+                    <input class="form-control" style="width:50%; margin:auto;" type="text" name="linkMaps" required>
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="summary">Gambar Pengantin</label>
+                <label for="inputanGambar">Gambar Pengantin</label>
                 <div class="input-wrapper" id="inputanGambar">
-                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="imageCouple">
+                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="image[couple][]" required>
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="summary">Gambar Latar Belakang</label>
+                <label for="inputanGambarBackground">Gambar Latar Belakang</label>
                 <div class="input-wrapper" id="inputanGambarBackground">
-                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="imageBackground">
+                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="image[background][]" required>
                     <span class="focus-border"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="summary">Gambar Tambahan</label>
+                <label for="inputanGambarTambahan">Gambar Tambahan</label>
                 <div class="input-wrapper" id="inputanGambarTambahan">
-                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="imageSecondary[]" multiple>
+                    <input class="form-control" style="width:50%; margin:auto;" type="file" name="image[tambahan][]" multiple required>
+                    <span class="focus-border"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputanTanggal">Tanggal Pernikahan</label>
+                <div class="input-wrapper" id="inputanTanggal">
+                    <input id="date_event" class="form-control" type="text" name="event_date" Placeholder="Masukkan Tanggal" required>
                     <span class="focus-border"></span>
                 </div>
             </div>
@@ -114,13 +126,17 @@ function Wedding(){
             btnGuest.onclick = function() {
                 window.location.href = `${window.location.origin}/dashboard`;
             }
+            const pick = flatpickr("#date_event", {
+                dateFormat: "Y-m-d",
+                altInput: true,
+                altFormat: "j F Y", 
+                locale: Indonesian,
+            });
         }, 100);
     }, [html]);
     return (
         <div dangerouslySetInnerHTML={{ __html: html }} />
     );
 }
-
-console.log(document.getElementById('form_wedding'));
 
 ReactDOM.createRoot(document.getElementById('form_wedding')).render(<Wedding />);

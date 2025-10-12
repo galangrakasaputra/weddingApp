@@ -22,8 +22,17 @@ class CustomerRepositoryImplement extends Eloquent implements CustomerRepository
 
     public function insertData(array $data): customer
     {
-        $data['id_customer'] = Auth::user()->id;
-        return $this->model->create($data);
+        $json_background = json_encode($data['background']);
+        $json_image = json_encode($data['image']);
+        $arr = [
+            "id_customer" => Auth::user()->id,
+            'summary' => $data['pengantar'],
+            'background' => $json_background,
+            'image' => $json_image,
+            'location' => $data['weddingPlace'],
+            'maps_location' => $data['linkMaps'],
+            'event_date' => $data['event_date']
+        ];
     }
 
     // Write something awesome :)

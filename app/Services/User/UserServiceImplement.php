@@ -3,6 +3,8 @@
 namespace App\Services\User;
 
 use LaravelEasyRepository\ServiceApi;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use App\Repositories\User\UserRepository;
 
 class UserServiceImplement extends ServiceApi implements UserService{
@@ -32,6 +34,12 @@ class UserServiceImplement extends ServiceApi implements UserService{
 
     public function registerUser(array $data)
     {
+        $data['password'] = Hash::make($data['password']);
+        if($this->mainRepository->countUser() == 0){
+            $data['status'] = 'admin';
+        } else {
+            $data['status'] = 'customer';
+        }
         return $this->mainRepository->registerUser($data);
     }
 

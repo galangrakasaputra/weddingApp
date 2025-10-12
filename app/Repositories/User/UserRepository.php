@@ -11,5 +11,7 @@ interface UserRepository extends Repository{
 
     public function registerUser(array $data): User;
 
+    public function countUser();
+
     public function loginUser(array $data): ?User;
 }

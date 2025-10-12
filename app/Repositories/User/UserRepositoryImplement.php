@@ -27,13 +27,7 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
 
     public function registerUser(array $data): User
     {
-        $data['password'] = Hash::make($data['password']);
-        if($this->countUser() == 0){
-            $data['status'] = 'admin';
-        } else {
-            $data['status'] = 'customer';
-        }
-        return $this->model->create($data);
+        return User::create($data);
     }
 
     public function loginUser(array $data): ?User

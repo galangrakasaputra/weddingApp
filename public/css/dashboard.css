@@ -54,3 +54,8 @@ input {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+.input {
+  width: 50%;
+  margin: auto;
+}
