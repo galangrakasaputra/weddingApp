@@ -9,7 +9,7 @@ interface CustomerService extends BaseService{
 
     // Write something awesome :)
 
-    public function insertData(array $data): ?customer;
+    public function insertData(array $data);
 
     public function moveFile(array $data);
 }

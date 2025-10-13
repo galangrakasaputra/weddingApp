@@ -17,21 +17,21 @@ function Wedding(){
                 <div class="form-group">
                     <label for="pria">Nama Pasangan Pria</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria[pasangan]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pria">Nama Wali(Ayah) Pria</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria[waliAyah]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pria">Nama Wali(Ibu) Pria</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria[waliIbu]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -43,21 +43,21 @@ function Wedding(){
                 <div class="form-group">
                     <label for="wanita">Nama Pasangan Wanita</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="wanita" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="wanita[pasangan]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pria">Nama Wali(Ayah) Wanita</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="wanita[waliAyah]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="pria">Nama Wali(Ibu) Wanita</label>
                     <div class="input-wrapper">
-                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="pria" required>
+                        <input type="text" class="form-control" style="width: 100%; margin:auto; text-align:center" name="wanita[waliIbu]" required>
                         <span class="focus-border"></span>
                     </div>
                 </div>
@@ -127,9 +127,10 @@ function Wedding(){
                 window.location.href = `${window.location.origin}/dashboard`;
             }
             const pick = flatpickr("#date_event", {
-                dateFormat: "Y-m-d",
+                dateFormat: "Y-m-d H:i",
                 altInput: true,
-                altFormat: "j F Y", 
+                enableTime: true,
+                altFormat: "j F Y H:i", 
                 locale: Indonesian,
             });
         }, 100);

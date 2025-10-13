@@ -26,6 +26,8 @@ class CustomerRepositoryImplement extends Eloquent implements CustomerRepository
         $json_image = json_encode($data['image']);
         $arr = [
             "id_customer" => Auth::user()->id,
+            'male_family' => $data['pria'],
+            'female_family' => $data['wanita'],
             'summary' => $data['pengantar'],
             'background' => $json_background,
             'image' => $json_image,
@@ -33,6 +35,8 @@ class CustomerRepositoryImplement extends Eloquent implements CustomerRepository
             'maps_location' => $data['linkMaps'],
             'event_date' => $data['event_date']
         ];
+
+        return customer::create($arr);
     }
 
     // Write something awesome :)

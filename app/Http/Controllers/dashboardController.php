@@ -26,7 +26,7 @@ class dashboardController extends Controller
 
     public function weddingInvitation(Request $request){
         $data = $request->all();
-        dd($data);
         $this->customer_service->insertData($data);
+        return redirect()->route('dashboard');
     }
 }

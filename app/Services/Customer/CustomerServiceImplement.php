@@ -8,6 +8,7 @@ use LaravelEasyRepository\ServiceApi;
 use App\Repositories\Customer\CustomerRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Date;
 
 class CustomerServiceImplement extends ServiceApi implements CustomerService{
 
@@ -67,14 +68,20 @@ class CustomerServiceImplement extends ServiceApi implements CustomerService{
     }
 
 
-    public function insertData(array $data): customer
+    public function insertData(array $data)
     {
       // Masukan image ke folder
       $file = $this->moveFile($data['image']);
+      $pria = json_encode($data['pria']);
+      $wanita = json_encode($data['wanita']);
+
       $data_file = $file->original;
       $arrAkhir = collect($data)
                   ->reject(fn($value, $key) => $key === 'image')
+                  ->reject(fn($value, $key) => $key === 'pria')
+                  ->reject(fn($value, $key) => $key === 'wanita')
                   ->toArray();
+
       for ($i=0; $i < count($data_file['data']); $i++) { 
         if($i == 1){
           $background = [$data_file['data'][$i]];
@@ -84,9 +91,11 @@ class CustomerServiceImplement extends ServiceApi implements CustomerService{
         }
       }
       $arrAkhir['background'] = $background;
+      $arrAkhir['pria'] = $pria;
+      $arrAkhir['wanita'] = $wanita;
       
       // Masukan ke database lewat Repository
-      $tambah = $this->mainRepository->insertData($arrAkhir);
+      $this->mainRepository->insertData($arrAkhir);
     }
 
     // Define your custom methods :)

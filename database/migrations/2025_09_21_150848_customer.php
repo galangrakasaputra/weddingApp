@@ -24,16 +24,18 @@ return new class extends Migration
         Schema::create('customer_content', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_customer');
+            $table->json('male_family');
+            $table->json('female_family');
             $table->string('summary');
             $table->json('background');
             $table->json('image');
             $table->string('location');
             $table->string('maps_location');
-            $table->date('event_date');
+            $table->datetime('event_date');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('id_customer')->references('id')->on('payment')->onDelete('cascade');
+            $table->foreign('id_customer')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
