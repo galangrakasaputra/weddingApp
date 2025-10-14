@@ -19,6 +19,7 @@ Route::post('/register', [App\Http\Controllers\LoginController::class, 'register
 Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [App\Http\Controllers\dashboardController::class, 'index'])->name('dashboard');
+Route::get('/tes', [App\Http\Controllers\dashboardController::class, 'getDataCustomer']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/undangan/{id_user}', [App\Http\Controllers\dashboardController::class, 'invitation'])->name('create-invitation');

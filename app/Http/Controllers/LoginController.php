@@ -40,6 +40,12 @@ class LoginController extends Controller
         }
     }
 
+    public function checkUser(){
+        return response()->json([
+            'id' => Auth::user()->id
+        ]);
+    }
+
     public function logout(){
         Auth::logout();
         return redirect()->route('home');

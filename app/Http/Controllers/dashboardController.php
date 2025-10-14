@@ -13,7 +13,9 @@ class dashboardController extends Controller
         $this->customer_service = $customer_service;
     }
     public function index(){
-        return view('admin.dashboard');
+        return view('admin.dashboard')->with(["globalData" => collect([
+            'user' => Auth::user()
+        ])]);
     }
 
     public function invitation($id_user){
@@ -28,5 +30,10 @@ class dashboardController extends Controller
         $data = $request->all();
         $this->customer_service->insertData($data);
         return redirect()->route('dashboard');
+    }
+
+    public function getDataCustomer($id){
+        $data = $this->customer_service->getDataWed($id);
+        return response()->json($data);
     }
 }

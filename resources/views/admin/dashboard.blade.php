@@ -1,6 +1,5 @@
 @extends('partial.main')
 @section('content')
-@vite('resources/js/app.jsx')
 <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 <div class="background"></div>
 @if(session('error'))
@@ -44,4 +43,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    let data = {!! $globalData->toJson()!!};
+</script>
+@vite('resources/js/app.jsx')
 @endsection

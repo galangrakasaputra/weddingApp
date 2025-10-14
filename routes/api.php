@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -12,3 +13,5 @@ Route::get('/cek-user', function (Request $request) {
         'user' => Auth::user(),
     ]);;
 });
+
+Route::post('/getWed/{id}', [App\Http\Controllers\dashboardController::class, 'getDataCustomer']);

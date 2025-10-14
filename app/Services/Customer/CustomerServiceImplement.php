@@ -72,16 +72,22 @@ class CustomerServiceImplement extends ServiceApi implements CustomerService{
     {
       // Masukan image ke folder
       $file = $this->moveFile($data['image']);
+
+      // Buat jadi json
       $pria = json_encode($data['pria']);
       $wanita = json_encode($data['wanita']);
 
+      // Ambil nama filenya
       $data_file = $file->original;
+
+      // Buat array tanpa image, pria, wanita
       $arrAkhir = collect($data)
                   ->reject(fn($value, $key) => $key === 'image')
                   ->reject(fn($value, $key) => $key === 'pria')
                   ->reject(fn($value, $key) => $key === 'wanita')
                   ->toArray();
 
+      // Masuk image, pria dan wanita ke dalam array
       for ($i=0; $i < count($data_file['data']); $i++) { 
         if($i == 1){
           $background = [$data_file['data'][$i]];
@@ -96,6 +102,11 @@ class CustomerServiceImplement extends ServiceApi implements CustomerService{
       
       // Masukan ke database lewat Repository
       $this->mainRepository->insertData($arrAkhir);
+    }
+
+    public function getDataWed(int $id)
+    {
+      return $this->mainRepository->getWed($id);
     }
 
     // Define your custom methods :)

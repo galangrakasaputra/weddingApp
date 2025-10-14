@@ -12,4 +12,6 @@ interface CustomerService extends BaseService{
     public function insertData(array $data);
 
     public function moveFile(array $data);
+
+    public function getDataWed(int $data);
 }
