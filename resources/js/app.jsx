@@ -30,9 +30,7 @@ function Login() {
     `);
     useEffect(() => {
         setTimeout(() => {
-            GetWed(data.user.id).then(datawed => {
-                console.log(datawed); 
-            });
+            GetWed(data.user.id);
             
             const btnGuest = document.getElementById("registerButton");
             btnGuest.onclick = function() {

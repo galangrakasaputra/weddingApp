@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Services\Customer\CustomerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class dashboardController extends Controller
 {
     protected $customer_service;
@@ -13,9 +15,16 @@ class dashboardController extends Controller
         $this->customer_service = $customer_service;
     }
     public function index(){
-        return view('admin.dashboard')->with(["globalData" => collect([
-            'user' => Auth::user()
-        ])]);
+        $data = false;
+        if(Auth::user()){
+            $data = $this->customer_service->getDataWed(Auth::user()->id);
+        }
+        return view('admin.dashboard')->with([
+            "globalData" => collect([
+                'user' => Auth::user(),
+            ]),
+            "data" => $data
+    ]);
     }
 
     public function invitation($id_user){

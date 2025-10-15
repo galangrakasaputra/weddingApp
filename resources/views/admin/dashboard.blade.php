@@ -19,13 +19,13 @@
         <br>
         @auth
             <a href="{{ url('undangan/'.Auth::user()->id) }}" class="btn btn-primary">Buat Undangan</a>   
+            @if($data)
+            <a href="{{ url('wedding_view/'.Auth::user()->id) }}" class="btn btn-warning">Lihat Undangan</a>
+            @endif
         @else
             <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Buat Undangan</button>
         @endauth
     </div>
-    {{-- <div id="template">
-
-    </div> --}}
 </div>
 
 <div class="modal fade" style="margin-top: 8%" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
