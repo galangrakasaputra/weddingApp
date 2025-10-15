@@ -45,16 +45,19 @@ function Invitation() {
     };
   }, [background]);
 
+  let html = ``;
   // tampilkan loading atau data
   if (!result) {
     return <p>Memuat data...</p>;
   }
 
   return (
-    <div>
-      <h1>Undangan</h1>
-      <p>Pria: {pria.pasangan}</p>
-      <p>Wanita: {wanita.pasangan}</p>
+    <div className="container">
+      <div className="content" style={{ marginTop: "10%"}}>
+        <img style={{ marginLeft: "25%", width: "50%" }} src={image[0][0].url} alt="" />
+        <h5 style={{ backgroundColor: "yellow", textAlign: "center" }}>The Wedding of </h5>
+        <h5 style={{ backgroundColor: "yellow", textAlign: "center" }}>{pria.pasangan} & {wanita.pasangan}</h5>
+      </div>
     </div>
   );
 }
