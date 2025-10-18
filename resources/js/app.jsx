@@ -30,8 +30,6 @@ function Login() {
     `);
     useEffect(() => {
         setTimeout(() => {
-            GetWed(data.user.id);
-            
             const btnGuest = document.getElementById("registerButton");
             btnGuest.onclick = function() {
                 window.location.href = `${window.location.origin}/register`;
@@ -44,22 +42,6 @@ function Login() {
     return (
         <div dangerouslySetInnerHTML={{ __html: html }} />
     );
-}
-
-async function GetWed(id){
-    try {
-        const res = await fetch(`${window.location.origin}/api/getWed/${id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        
-        let data = await res.json();
-        return data;
-    } catch (error) {
-        
-    }
 }
 
 ReactDOM.createRoot(document.getElementById('loginForm')).render(<Login />);

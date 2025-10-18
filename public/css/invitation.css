@@ -1,0 +1,30 @@
+.component {
+  position: relative;
+  width: 100%;
+  background-image: url("../img/bc-wedding.jpg");
+  padding: 40px 0;
+  overflow: visible;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  justify-items: center;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}

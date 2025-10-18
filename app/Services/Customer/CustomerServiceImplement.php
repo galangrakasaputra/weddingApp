@@ -53,8 +53,10 @@ class CustomerServiceImplement extends ServiceApi implements CustomerService{
 
       foreach ($arr as $file){
         $newName = $file->getClientOriginalName();
+
+        $fileName = str_replace(' ', '_', $newName);
         
-        $path = $file->storeAs($directory, $newName, 'public');
+        $path = $file->storeAs($directory, $fileName, 'public');
 
         $save[] = [
           'nama_file' => $newName,

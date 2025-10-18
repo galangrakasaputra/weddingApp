@@ -39,7 +39,7 @@ class CustomerRepositoryImplement extends Eloquent implements CustomerRepository
         return customer::create($arr);
     }
 
-    public function getWed(int $id): customer
+    public function getWed(int $id): ?customer
     {
         return customer::where('id_customer', $id)->first();
     }

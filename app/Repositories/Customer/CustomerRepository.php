@@ -11,5 +11,5 @@ interface CustomerRepository extends Repository{
 
     public function insertData(array $data): customer;
 
-    public function getWed(int $id): customer;
+    public function getWed(int $id): ?customer;
 }

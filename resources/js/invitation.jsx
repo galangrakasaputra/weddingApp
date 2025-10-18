@@ -2,9 +2,36 @@
 import ReactDOM from 'react-dom/client';
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../../public/css/invitation.css";
 
 function Invitation() {
   const [result, setResult] = useState(null);
+  const [scrollDirection, setScrollDirection] = useState("down");
+
+   useEffect(() => {
+    let lastScrollTop = 0;
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScrollTop) {
+        setScrollDirection("down");
+      } else if (currentScroll < lastScrollTop) {
+        setScrollDirection("up");
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
 
   useEffect(() => {
     async function getData() {
@@ -28,7 +55,7 @@ function Invitation() {
   let hours = null;
   let day = null;
   let path = null;
-  let imageView = null;
+  let imageView = [];
   // Baru isi kalau result sudah ada
   if (result) {
     background = JSON.parse(result.background)[0];
@@ -52,24 +79,19 @@ function Invitation() {
       window.open(url, '_blank');
     }
 
-    let row = [2, 3 ,1];
-    let grid = [];
-    let index = 0;
-    console.log(image);
-    for (let i = 0; i < image.length; i++){
-      let data = image[i][0];
-      let images = [];
-
-      for (let j = 0; j < data.length; j++){
-        // Lanjutannya tinggal push ke array (liat gpt di chat gpt prompt menamilkan tanggal di react)
-      }
+    let array = [];
+    for (let i = 0; i < image.length; i++) {
+      array.push([image[i][0]]);       
     }
-    // for (let i = 0; i < row.length; i++){
-    //   let count = [i];
-    //   for (let j = 0; j < image.length; j++){
 
-    //   }
-    // }
+    console.log(array);
+
+    for (let i = 0; i < array.length; i++) {
+      let info = `${window.location.origin}/${array[i][0].url}`;
+      imageView.push(
+        <img key={i} data-aos={scrollDirection === "down" ? "fade-up": "fade-down"} src={info} alt={i}/>
+      )
+    }
   }
 
   useEffect(() => {
@@ -91,10 +113,10 @@ function Invitation() {
   }
 
   return (
-      <div className="main" style={{ marginTop: "15%"}}>
-        <div className="component" style={{ backgroundColor: "red" }}>
+      <div className="main" style={{ marginTop: "15%", marginBottom: "10%"}}>
+        <div className="component" data-aos={scrollDirection === "down" ? "fade-up": "fade-down"} style={{ backgroundColor: "red" }}>
           <div className="container">
-            <div className="title" style={{ backgroundColor: "blue", textAlign: "center"}}>
+            <div className="title" style={{ textAlign: "center"}}>
               <h5>Pasangan Mempelai</h5>
               <h1>{pria.pasangan} & {wanita.pasangan}</h1>
             </div>
@@ -105,14 +127,14 @@ function Invitation() {
               <img style={{ width: "30%", marginLeft: "35%", borderRadius: "10%" }} src={image[0][0].url} alt="" />
             </div>
             <div className="infoCouple" style={{ marginTop: "5%", display: "flex", justifyContent: "space-between" }}>
-              <div className="femaleInfo" style={{ backgroundColor: "gray", width: "40%" }}>
+              <div className="femaleInfo" style={{ width: "40%" }}>
                 <h2>{wanita.pasangan}</h2>
                 <hr />
                 <h5><b>Putri Dari</b></h5>
                 <h5>Bapak {wanita.waliAyah}</h5>
                 <h5>& Ibu {wanita.waliIbu}</h5>
               </div>
-              <div className="maleInfo" style={{ backgroundColor: "gray", width: "40%"}}>
+              <div className="maleInfo" style={{ width: "40%"}}>
                 <h2>{pria.pasangan}</h2>
                 <hr />
                 <h5><b>Putra Dari</b></h5>
@@ -122,7 +144,7 @@ function Invitation() {
             </div>
           </div>
         </div>
-        <div className="component">
+        <div className="component1" data-aos={scrollDirection === "down" ? "fade-up": "fade-down"}>
           <div className="container">
             <div className="summary" style={{ textAlign: "center", color: "white", marginTop: "10%" }}>
               <h5>"Dan diantara ayat ayatnya ialah dia menciptakan untukmu istri istri dari jenismu</h5>
@@ -134,7 +156,7 @@ function Invitation() {
             </div>
           </div>
         </div>
-        <div className="component" style={{ backgroundColor: "red", marginTop: "5%", marginBottom: "10%" }}>
+        <div className="component" data-aos={scrollDirection === "down" ? "fade-up": "fade-down"} style={{ marginTop: "5%", marginBottom: "10%" }}>
           <div className="container">
             <div className="waktuTempat" style={{ textAlign: "center" }}>
               <h1>Waktu</h1>
@@ -148,9 +170,19 @@ function Invitation() {
             </div>
           </div>
         </div>
-        <div className="componene">
+        <div className="component" data-aos={scrollDirection === "down" ? "fade-up": "fade-down"}>
+          <div className="container" style={{ textAlign: "center" }}>
+            <h1>Our Moment</h1>
+            <div className="gallery-grid">
+              {imageView}
+            </div>
+          </div>
+        </div>
+        <div className="component1" data-aos={scrollDirection === "down" ? "fade-up": "fade-down"}>
           <div className="container">
-
+            <div className="summary" style={{ textAlign: "center", color: "white", marginTop: "10%" }}>
+              <h4>TERIMA KASIH ATAS KEHADIRAN DAN DOA RESTUNYA KAMI YANG BERBAHAGIA</h4>
+            </div>
           </div>
         </div>
       </div>

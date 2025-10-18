@@ -10,6 +10,7 @@
     <script>
         let data = {!! $data->toJson() !!}
     </script>
+    <link rel="stylesheet" href="{{ asset('css/invitation.css') }}">
 </head>
 <body>
     <div id="body_react"></div>
