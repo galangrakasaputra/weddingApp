@@ -1,4 +1,6 @@
+
 import { Link } from "react-router";
+import { ArrowRight } from "lucide-react";
 import FeaturedTemplate from "./FeaturedTemplate";
 
 const featuredTemplates = [
@@ -30,38 +32,66 @@ const featuredTemplates = [
 
 function Featured() {
   return (
-    <section className="bg-white px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative overflow-hidden border-t border-[#F6E8E9] bg-[#FFFDFC] px-8 py-20 sm:px-10 md:px-12 md:py-24 lg:px-16 xl:px-20 2xl:px-24">
+      {/* Background Decoration */}
+      <div className="pointer-events-none absolute -right-40 top-10 h-[350px] w-[350px] rounded-full bg-[#F8DDE2]/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-[1600px]">
         {/* Section Header */}
-        <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div>
-            <span className="text-sm font-semibold uppercase tracking-widest text-rose-500">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:mb-14 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#C9798B]">
+              <span className="h-px w-7 bg-[#E9A5B2]" />
               Our Collection
             </span>
 
-            <h2 className="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">
-              Featured Templates
+            <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#72545B] md:text-5xl lg:text-[54px]">
+              Find the Perfect
+              <span className="block italic text-[#D98E9E]">
+                Wedding Invitation.
+              </span>
             </h2>
 
-            <p className="mt-4 max-w-xl leading-7 text-gray-500">
-              Temukan desain undangan digital yang sesuai dengan cerita dan
-              gaya pernikahanmu.
+            <p className="mt-5 max-w-xl text-base leading-8 text-[#806D70] md:text-lg">
+              Setiap pernikahan memiliki cerita yang berbeda.
+              Temukan desain undangan digital yang mencerminkan
+              kepribadian dan kisah istimewamu.
             </p>
           </div>
 
+          {/* View All Link */}
           <Link
             to="/templates"
-            className="text-sm font-semibold text-rose-500 transition hover:text-rose-600"
+            className="group inline-flex w-fit items-center gap-3 border-b border-[#E9A5B2] pb-2 text-sm font-semibold text-[#A66F7B] transition-colors duration-300 hover:border-[#C9798B] hover:text-[#C9798B]"
           >
-            View All Templates →
+            Explore All Templates
+
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
           </Link>
         </div>
 
         {/* Template Grid */}
-        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {featuredTemplates.map((template) => (
             <FeaturedTemplate key={template.id} {...template} />
           ))}
+        </div>
+
+        {/* Bottom Note */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-2 border-t border-[#F6E8E9] pt-8 text-center sm:flex-row sm:gap-3">
+          <p className="text-sm text-[#A38D91]">
+            Belum menemukan desain yang sesuai?
+          </p>
+
+          <Link
+            to="/templates"
+            className="text-sm font-semibold text-[#C9798B] transition hover:text-[#A66F7B]"
+          >
+            Lihat semua koleksi
+          </Link>
         </div>
       </div>
     </section>

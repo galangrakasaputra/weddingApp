@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
+import ScrollToTop from "../components/ScrollTop";
 import Navbar from "../components/Navbar";
 
 import Home from "../pages/Home";
@@ -9,6 +10,7 @@ import TemplatePreview from "../pages/TemplatePreview";
 function AppRouter() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
 
       <Routes>

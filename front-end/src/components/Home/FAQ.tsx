@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
@@ -37,54 +38,89 @@ function FAQ() {
   };
 
   return (
-    <section className="bg-white px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-3xl">
+    <section className="relative overflow-hidden border-t border-[#F6E8E9] bg-[#FFFDFC] px-8 py-20 sm:px-10 md:px-12 md:py-24 lg:px-16 xl:px-20 2xl:px-24">
+      {/* Background Decoration */}
+      <div className="pointer-events-none absolute -right-40 top-10 h-[350px] w-[350px] rounded-full bg-[#F8DDE2]/30 blur-3xl" />
+
+      <div className="relative mx-auto max-w-[1600px]">
         {/* Header */}
-        <div className="mb-12 text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-rose-500">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#C9798B]">
+            <span className="h-px w-7 bg-[#E9A5B2]" />
             FAQ
+            <span className="h-px w-7 bg-[#E9A5B2]" />
           </span>
 
-          <h2 className="mt-3 text-3xl font-bold text-gray-900 md:text-4xl">
-            Frequently Asked Questions
+          <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight text-[#72545B] md:text-5xl">
+            Everything You Need
+            <span className="block italic text-[#D98E9E]">
+              to Know About Wedly.
+            </span>
           </h2>
 
-          <p className="mt-4 leading-7 text-gray-500">
-            Temukan jawaban dari beberapa pertanyaan yang sering diajukan
-            mengenai layanan Wedly.
+          <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-[#806D70] md:text-lg">
+            Punya pertanyaan sebelum membuat undangan?
+            Temukan informasi yang kamu butuhkan di sini.
           </p>
         </div>
 
         {/* Accordion */}
-        <div className="divide-y divide-gray-200 border-y border-gray-200">
+        <div className="mx-auto max-w-3xl border-y border-[#F0D9DE]">
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
 
             return (
-              <div key={index} className="py-5">
+              <div
+                key={index}
+                className="border-b border-[#F6E8E9] last:border-b-0"
+              >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-4 text-left"
+                  className="group flex w-full items-center justify-between gap-5 py-6 text-left"
                 >
-                  <span className="font-semibold text-gray-900 transition hover:text-rose-500">
-                    {faq.question}
-                  </span>
+                  <div className="flex items-center gap-5">
+                    <span className="hidden font-serif text-sm italic text-[#D9A4AE] sm:block">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-                  <ChevronDown
-                    size={20}
-                    className={`shrink-0 text-gray-500 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
+                    <span
+                      className={`text-base font-medium transition-colors duration-300 md:text-lg ${
+                        isOpen
+                          ? "text-[#C9798B]"
+                          : "text-[#72545B] group-hover:text-[#C9798B]"
+                      }`}
+                    >
+                      {faq.question}
+                    </span>
+                  </div>
+
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                      isOpen
+                        ? "rotate-180 border-[#E9A5B2] bg-[#FFF1F3] text-[#C9798B]"
+                        : "border-[#F0D9DE] text-[#A38D91] group-hover:border-[#E9A5B2] group-hover:text-[#C9798B]"
                     }`}
-                  />
+                  >
+                    <ChevronDown size={18} />
+                  </span>
                 </button>
 
-                {isOpen && (
-                  <p className="mt-4 pr-8 text-sm leading-7 text-gray-500">
-                    {faq.answer}
-                  </p>
-                )}
+                {/* Answer */}
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="max-w-2xl pb-6 pl-0 text-sm leading-8 text-[#806D70] sm:pl-10 md:text-base">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}
